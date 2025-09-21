@@ -12,21 +12,32 @@ typedef struct list
 
 uint64_t findMaxBlock(list *head)
 {
-    if (head == NULL)
-    {
-        return 0;
-    }
+    // if (head == NULL)
+    // {
+    //     return 0;
+    // }
     size_t max = 0;
     uint64_t maxSizeAdress = 0;
-    do
+    // do
+    // {
+    //     if (max < head->size)
+    //     {
+    //         max = head->size;
+    //         maxSizeAdress = head->address;
+    //     }
+    //     head = head->next;
+    // } while (head != NULL);
+    for (list *p = head; p != NULL; p = p->next)
     {
-        if (max < head->size)
+        if (max < p->size)
         {
-            max = head->size;
-            maxSizeAdress = head->address;
+            max = p->size;
+            maxSizeAdress = p->address;
         }
-        head = head->next;
-    } while (head != NULL);
+        
+    }
+    
+
     //    printf("%llu", maxSizeAdress);
     return maxSizeAdress;
 }

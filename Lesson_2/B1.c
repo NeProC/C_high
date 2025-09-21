@@ -17,10 +17,15 @@ size_t totalMemoryUsage(list *head)
         return 0;
     }
     size_t allMem = 0;
-    do
+    // do
+    // {
+    //     allMem += head->size;
+    //     head = head->next;
+    // } while (head != NULL);
+    for (struct list *p = head; p; p = p->next)
     {
-        allMem += head->size;
-        head = head->next;
-    } while (head != NULL);
+        allMem += p->size;
+    }
+
     return allMem;
 }
