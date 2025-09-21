@@ -1,9 +1,9 @@
-#Variables
+#Variables 
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
 
 build:
-	$(CC) $(CFLAGS) $(FILE) -o $(basename $(FILE))
+	$(CC) $(CFLAGS) $(FILE) -o $(basename $(FILE)) -lncurses
 
 run: build
 	./$(basename $(FILE))
