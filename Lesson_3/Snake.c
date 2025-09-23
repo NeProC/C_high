@@ -48,7 +48,7 @@ typedef struct tail_t
 typedef struct snake_t
 {
     int x;
-    int y;                           /*  x y координаты змеи */
+    int y;                           /*  x y координаты головы змеи */
     int direction;                   /* направление */
     size_t tsize;                    /* размер хвоста */
     tail_t *tail;                    /* указатель на структуру хвоста */
@@ -62,6 +62,7 @@ void initSnake(snake_t *head, size_t size, int x, int y);       /* функци�
 void go(struct snake_t *head);                                  /* движение головы с учетом текущего направления движения*/
 void changeDirection(struct snake_t *snake, const int32_t key); /* изменение направления */
 void goTail(struct snake_t *head);                              /* движение хвоста с учетом движения головы */
+uint8_t crashBash(snake_t *snake);                              /* проверка на самопоедание змеи */
 
 int main(int argc, char const *argv[])
 {
@@ -92,6 +93,10 @@ int main(int argc, char const *argv[])
         // while ((double)(clock() - begin) / CLOCKS_PER_SEC < DELAY)
         while (((double)(clock() - begin) / CLOCKS_PER_SEC) < DELAY) /* Работает, но с timeout лучше*/
         {
+        }
+        if (crashBash(snake))
+        { /* Завершаем игру если врезаемся в хвост или что то другое */
+            break;
         }
 
         changeDirection(snake, key_pressed);
@@ -201,4 +206,20 @@ void goTail(struct snake_t *head)
     }
     head->tail[0].x = head->x;
     head->tail[0].y = head->y;
+}
+
+uint8_t crashBash(snake_t *snake)
+{
+    uint8_t flag = 0;
+    size_t size = snake->tsize;
+    for (size_t i = 0; i < size - 1; i++)
+    {
+        if ((snake->tail + i + 1)->x == snake->x && (snake->tail + i + 1)->y == snake->y)
+        {
+            flag = 1;
+            break;
+        }
+    }
+
+    return flag;
 }
