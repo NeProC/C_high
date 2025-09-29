@@ -1,39 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <string.h>
 
-uint32_t cnk2(uint32_t n, uint32_t k)
-{
-    double res = 1;
-    for (uint32_t i = 1; i <= k; ++i)
-    {
-        res = res * (n - k + i) / i;
-    }
-    return (int)(res + 0.01);
-}
+#define SIZE 1001
 
 int main()
 {
-    uint32_t numFlag[10] = {
+    char inputStr[SIZE] = {
         0,
     };
-    uint32_t numCounter = 0;
-    uint64_t num;
-    uint32_t tmp;
+    scanf("%s", inputStr);
+    int strLen = strlen(inputStr);
+    uint32_t a, b, c;
+    int32_t threeNum[SIZE] = {
+        0,
+    };
+    int32_t num;
+    int counter = 0;
 
-    scanf("%ld", &num);
-    while (num != 0)
+    if (strLen < 3)
     {
-        tmp = num % 10;
-        numFlag[tmp] = 1;
-        num /= 10;
-    }
-    for (size_t i = 0; i < 10; i++)
-    {
-        numCounter += numFlag[i];
+        printf("0\n");
+        return 0;
     }
 
-    printf("%d", cnk2(numCounter, 3));
+    for (size_t i = 0; i < strLen; i++)
+    {
+        for (size_t j = i + 1; j < strLen; j++)
+        {
+            for (size_t z = j + 1; z < strLen; z++)
+            {
+                a = inputStr[i] - '0';
+                b = inputStr[j] - '0';
+                c = inputStr[z] - '0';
+                if (a == 0)
+                {
+                    continue;
+                }
+                num = a * 100 + b * 10 + c;
+                threeNum[num] = 1;
+            }
+        }
+    }
+
+    for (size_t i = 0; i < SIZE - 1; i++)
+    {
+        if (threeNum[i])
+        {
+            counter++;
+        }
+    }
+
+    printf("%d\n", counter);
 
     return 0;
 }
