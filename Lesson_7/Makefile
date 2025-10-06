@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
 
 build:
-	$(CC) $(CFLAGS) $(FILE) -o $(basename $(FILE)) -lncurses
+	$(CC) $(CFLAGS) $(FILE) -o $(basename $(FILE)) 
 
 run: build
 	./$(basename $(FILE))
