@@ -7,6 +7,7 @@
 #include <inttypes.h>
 #include <math.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 typedef float(*function)(float);        //Тип данных указателя на функцию
 
@@ -23,6 +24,22 @@ float rootFindCombine(float xl, float xr, float eps, function f, function df, fu
 float f(float x);
 float df(float x);
 float ddf(float x);
+
+float f1(float x);
+float df1(float x);
+float ddf1(float x);
+
+float f2(float x);
+float df2(float x);
+float ddf2(float x);
+
+float f3(float x);
+float df3(float x);
+float ddf3(float x);
+
+float F1(float x);
+float F2(float x);
+float F3(float x);
 
 //Интегрирование, площадь под кривой
 float calcIntegralSqu(float xl, float xr, size_t n, function f);

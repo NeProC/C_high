@@ -172,6 +172,21 @@ float ddf3(float x)
     return 6*pow(x,-3);
 }
 
+float F1(float x)
+{
+    return f3(x)-f1(x);
+}
+
+float F2(float x)
+{
+    return f3(x)-f2(x);
+}
+
+float F3(float x)
+{
+    return f2(x)- f1(1);
+}
+
 float testF(float x)
 {
     return 2*x;

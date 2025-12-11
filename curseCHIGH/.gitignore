@@ -1,3 +1,4 @@
 *.o
 program
 .vscode/
+../Lesson_7/.vscode/
