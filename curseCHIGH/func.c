@@ -1,5 +1,8 @@
 #include "func.h"
 
+float p[5][2] = {{0.5f,1.0f},{-6.0f,-5.0f},{3.5f, 4.0f},{3.0f,3.5f},{-0.4f,-0.2f}};
+
+
 int signF(float x, function f)
 {
     return f(x) == 0 ? 0 : (f(x) < 0 ? -1 : +1);
@@ -69,7 +72,7 @@ float rootFindChord(float xl, float xr, float eps, function f)
         xl = xr - (xr - xl) * f(xr) / (f(xr) - f(xl));
         xr = xl - (xl - xr) * f(xl) / (f(xl) - f(xr));
     }
-    printf("Find root for %d steps\n",stepCount); //статистика
+    printf("Для поиска произведено %d итераций\n",stepCount); //статистика
     return xr;
 }
 
@@ -84,7 +87,7 @@ float rootFindTangent(float xn, float eps, function f, function df)
         x0 = xl;
         xl = xl - f(xl)/df(xl);
     }
-    printf("Find root for %d steps\n",stepCount); //статистика
+    printf("Для поиска произведено %d итераций\n",stepCount); //статистика
     return xl;
 }
 
@@ -106,7 +109,7 @@ float rootFindCombine(float xl, float xr, float eps, function f, function df, fu
             xr = xr - f(xr)/df(xr);
         }
     }
-    printf("Find root for %d steps\n",stepCount); //статистика
+    printf("Для поиска произведено %d итераций\n",stepCount); //статистика
     return (xl+xr)/2;
 }
 
@@ -177,15 +180,46 @@ float F1(float x)
     return f3(x)-f1(x);
 }
 
+float dF1(float x)
+{
+    return df3(x) - df1(x);
+}
+
+float ddF1(float x)
+{
+    return ddf3(x) - ddf1(x);
+}
+
 float F2(float x)
 {
     return f3(x)-f2(x);
 }
 
+float dF2(float x)
+{
+    return df3(x) - df2(x);
+}
+
+float ddF2(float x)
+{
+    return ddf3(x) - ddf2(x);
+}
+
 float F3(float x)
 {
-    return f2(x)- f1(1);
+    return f2(x)- f1(x);
 }
+
+float dF3(float x)
+{
+    return df2(x) - df1(x);
+}
+
+float ddF3(float x)
+{
+    return ddf2(x) - ddf1(x);
+}
+
 
 float testF(float x)
 {
