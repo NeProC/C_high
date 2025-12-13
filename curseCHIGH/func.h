@@ -10,6 +10,7 @@
 #include <unistd.h>
 
 #define EPS 0.001f
+#define INTEGRAL_STEPS 10000UL
 
 extern float p[5][2];
 
@@ -22,7 +23,7 @@ float rootFindDiv(float xl, float xr, float eps, function f);
 float rootFindDiv2(float xl, float xr, float eps, function f);
 float rootFindChord(float xl, float xr, float eps, function f);
 float rootFindTangent(float xn, float eps, function f, function df);
-float rootFindCombine(float xl, float xr, float eps, function f, function df, function ddf);
+float rootFindCombine(float xl, float xr, float eps, function f, function df, function ddf, int flag);
 
 //Заданные функциии и их производные
 float f(float x);

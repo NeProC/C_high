@@ -91,7 +91,7 @@ float rootFindTangent(float xn, float eps, function f, function df)
     return xl;
 }
 
-float rootFindCombine(float xl, float xr, float eps, function f, function df, function ddf)
+float rootFindCombine(float xl, float xr, float eps, function f, function df, function ddf, int flag)
 {
     unsigned int stepCount = 0;
     while (fabs(xl-xr) > 2*eps) {
@@ -109,7 +109,8 @@ float rootFindCombine(float xl, float xr, float eps, function f, function df, fu
             xr = xr - f(xr)/df(xr);
         }
     }
-    printf("Для поиска произведено %d итераций\n",stepCount); //статистика
+    if(flag)
+        printf("Для поиска произведено %d итераций\n",stepCount); //статистика
     return (xl+xr)/2;
 }
 
